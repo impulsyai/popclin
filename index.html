@@ -1,9 +1,16 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="pt-BR" class="scroll-smooth overflow-x-hidden">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Popclin Itapuã | Clínica Odontológica em Salvador | Sorrisos que Transformam</title>
+    <style>
+        html, body { 
+            overflow-x: hidden; 
+            width: 100%;
+            position: relative;
+        }
+    </style>
     <meta name="description" content="A melhor clínica odontológica em Itapuã, Salvador. Especialistas em Implantes, Lentes em Resina e Estética Dental. Atendimento humanizado e tecnologia de ponta.">
     <link rel="canonical" href="https://popclin.com.br" />
     
@@ -232,11 +239,12 @@
         }
     </style>
 </head>
-<body class="bg-white selection:bg-brand-gold selection:text-brand-blue">
-    <!-- Organic Background Blobs -->
-    <div class="blob top-[10%] -left-[200px]" data-speed="0.1"></div>
-    <div class="blob top-[40%] -right-[200px]" data-speed="0.2"></div>
-    <div class="blob top-[70%] -left-[200px]" data-speed="0.15"></div>
+<body class="bg-white selection:bg-brand-gold selection:text-brand-blue overflow-x-hidden">
+    <main class="overflow-x-hidden">
+        <!-- Organic Background Blobs -->
+        <div class="blob top-[10%] -left-[200px]" data-speed="0.1"></div>
+        <div class="blob top-[40%] -right-[200px]" data-speed="0.2"></div>
+        <div class="blob top-[70%] -left-[200px]" data-speed="0.15"></div>
 
     <!-- 1. NAVBAR -->
     <nav id="navbar" class="fixed w-full z-50 top-0 border-b border-white/10">
@@ -1288,5 +1296,6 @@
         </svg>
         <i class="ph ph-arrow-up absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-brand-blue text-sm"></i>
     </div>
+    </main>
 </body>
 </html>
