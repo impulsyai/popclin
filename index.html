@@ -204,7 +204,10 @@
         }
 
         /* Utils */
-        .gsap-reveal { opacity: 0; transform: translateY(30px); }
+        .gsap-reveal { opacity: 0; transform: translateY(20px); }
+        @media (max-width: 768px) {
+            .gsap-reveal { opacity: 1; transform: translateY(0); }
+        }
 
         /* Navbar Active Links */
         .nav-link {
@@ -1146,12 +1149,12 @@
             gsap.to(elem, {
                 scrollTrigger: {
                     trigger: elem,
-                    start: "top 85%",
+                    start: "top 95%", // Aparece muito mais cedo
                 },
                 opacity: 1,
                 y: 0,
-                duration: 0.8,
-                ease: "power3.out"
+                duration: 0.6, // Mais rápido
+                ease: "power2.out"
             });
         });
 
