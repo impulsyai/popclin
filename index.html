@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popclin Itapuã | Clínica Odontológica em Salvador | Sorrisos que Transformam</title>
+    <meta name="description" content="A melhor clínica odontológica em Itapuã, Salvador. Especialistas em Implantes, Lentes em Resina e Estética Dental. Atendimento humanizado e tecnologia de ponta.">
+    <link rel="canonical" href="https://popclin.com.br" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Popclin Itapuã - Sorrisos que Transformam">
+    <meta property="og:description" content="Especialistas em Implantes e Estética Dental em Itapuã, Salvador.">
+    
+    <!-- Favicon SVG Elite -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💎</text></svg>">
+    
+    <!-- LCP Preload Elite -->
+    <link rel="preload" as="image" href="./logo.png">
+    <link rel="preload" as="image" href="./sobre.jpg">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#0F2644', /* Azul Profundo Premium */
+                            gold: '#C5A86D', /* Dourado Sofisticado */
+                            light: '#F8F9FA',
+                            dark: '#111827',
+                            muted: '#6B7280'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: #F8F9FA; color: #111827; overflow-x: hidden; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Outfit', sans-serif; }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #0F2644 0%, #1A3E6B 100%);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(15, 38, 68, 0.3);
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #C5A86D 0%, #E6CFA1 100%);
+            color: #0F2644;
+            transition: all 0.3s ease;
+        }
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(197, 168, 109, 0.4);
+        }
+
+        /* Glass Navbar */
+        #navbar {
+            transition: all 0.4s ease;
+            background: transparent;
+        }
+        #navbar.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .float-wpp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+            animation: pulse-wpp 2s infinite;
+        }
+        .float-wpp:hover { transform: scale(1.1); }
+        @keyframes pulse-wpp {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+            70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* Film Grain Effect */
+        .film-grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.035;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Masked Reveals */
+        .mask-wrap {
+            overflow: hidden;
+            display: block;
+        }
+        .mask-text {
+            display: block;
+            transform: translateY(100%);
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .mask-wrap.active .mask-text {
+            transform: translateY(0);
+        }
+
+        /* Progress Widget */
+        .progress-wrap {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            height: 46px;
+            width: 46px;
+            cursor: pointer;
+            display: block;
+            border-radius: 50px;
+            box-shadow: inset 0 0 0 2px rgba(15, 139, 141, 0.2);
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            transition: all 200ms linear;
+        }
+        .progress-wrap.active-progress {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .progress-wrap svg path {
+            fill: none;
+        }
+        .progress-wrap svg.progress-circle path {
+            stroke: var(--brand-gold);
+            stroke-width: 4;
+            box-sizing: border-box;
+            transition: all 200ms linear;
+        }
+
+        /* Organic Blobs */
+        .blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(15, 139, 141, 0.05) 0%, rgba(255,255,255,0) 70%);
+            filter: blur(80px);
+            border-radius: 50%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Glassmorphism Navbar */
+        #navbar.scrolled {
+            background: rgba(255, 255, 255, 0.7) !important;
+            backdrop-filter: blur(20px) saturate(180%) !important;
+            -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+            height: 80px !important;
+        }
+        #navbar .flex.justify-between.items-center {
+            transition: all 0.4s ease;
+        }
+        #navbar.scrolled .flex.justify-between.items-center {
+            height: 80px;
+        }
+
+        /* Utils */
+        .gsap-reveal { opacity: 0; transform: translateY(30px); }
+
+        /* Navbar Active Links */
+        .nav-link {
+            position: relative;
+            padding-bottom: 4px;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--brand-gold);
+            transition: width 0.3s ease;
+        }
+        .nav-link.active {
+            color: var(--brand-gold) !important;
+        }
+        .nav-link.active::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-white selection:bg-brand-gold selection:text-brand-blue">
+    <!-- Organic Background Blobs -->
+    <div class="blob top-[10%] -left-[200px]" data-speed="0.1"></div>
+    <div class="blob top-[40%] -right-[200px]" data-speed="0.2"></div>
+    <div class="blob top-[70%] -left-[200px]" data-speed="0.15"></div>
+
+    <!-- 1. NAVBAR -->
+    <nav id="navbar" class="fixed w-full z-50 top-0 border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                <div class="flex-shrink-0 flex items-center h-full">
+                    <img src="./logo.png" alt="Popclin" class="h-20 md:h-24 w-auto object-contain py-2">
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#tratamentos" class="nav-link text-sm font-semibold text-brand-dark hover:text-brand-gold transition-colors uppercase tracking-widest">Tratamentos</a>
+                    <a href="#diferenciais" class="nav-link text-sm font-semibold text-brand-dark hover:text-brand-gold transition-colors uppercase tracking-widest">Diferenciais</a>
+                    <a href="#resultados" class="nav-link text-sm font-semibold text-brand-dark hover:text-brand-gold transition-colors uppercase tracking-widest">Resultados</a>
+                    <a href="#clinica" class="nav-link text-sm font-semibold text-brand-dark hover:text-brand-gold transition-colors uppercase tracking-widest">A Clínica</a>
+                    <a href="#contato" class="btn-primary px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest">Agendar Avaliação</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-brand-blue text-3xl focus:outline-none">
+                        <i class="ph ph-list"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu" class="fixed inset-0 bg-brand-blue z-[999] transform translate-x-full transition-transform duration-300 md:hidden flex flex-col items-center justify-center space-y-10">
+            <button id="menu-close" class="absolute top-8 right-8 text-white text-4xl p-2">
+                <i class="ph ph-x"></i>
+            </button>
+            <a href="#tratamentos" class="text-white text-2xl font-bold uppercase tracking-widest menu-link hover:text-brand-gold transition-colors">Tratamentos</a>
+            <a href="#diferenciais" class="text-white text-2xl font-bold uppercase tracking-widest menu-link hover:text-brand-gold transition-colors">Diferenciais</a>
+            <a href="#resultados" class="text-white text-2xl font-bold uppercase tracking-widest menu-link hover:text-brand-gold transition-colors">Resultados</a>
+            <a href="#clinica" class="text-white text-2xl font-bold uppercase tracking-widest menu-link hover:text-brand-gold transition-colors">A Clínica</a>
+            <a href="#contato" class="btn-gold px-12 py-5 rounded-full font-bold uppercase tracking-widest text-sm menu-link shadow-2xl">Agendar Agora</a>
+        </div>
+    </nav>
+
+    <!-- 2. HERO DE ALTA CONVERSÃO -->
+    <section class="relative min-h-[90vh] flex items-center pt-24 bg-brand-light overflow-hidden">
+        <!-- Decorators -->
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-brand-blue opacity-5 rounded-l-full blur-3xl translate-x-1/3"></div>
+        <div class="absolute bottom-0 left-0 w-1/3 h-1/2 bg-brand-gold opacity-10 rounded-tr-full blur-3xl -translate-x-1/2"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 w-full grid md:grid-cols-2 gap-12 items-center">
+            
+            <div class="gsap-reveal">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-brand-gold/30 bg-white shadow-sm mb-6">
+                    <span class="w-2 h-2 rounded-full bg-brand-gold animate-pulse"></span>
+                    <span class="text-xs font-bold text-brand-blue uppercase tracking-widest">Clínica Referência em Itapuã</span>
+                </div>
+                
+                <h1 class="font-heading text-5xl md:text-6xl lg:text-7xl font-bold text-brand-blue leading-[1.1] mb-6">
+                    Recupere seu sorriso com <span class="text-brand-gold">segurança e resultados naturais</span> em Itapuã.
+                </h1>
+                
+                <p class="text-lg text-brand-muted mb-8 max-w-lg leading-relaxed">
+                    Volte a sorrir e a mastigar com confiança. Implantes, estética e reabilitação com tecnologia avançada e atendimento humanizado para você e sua família.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 mb-10">
+                    <a href="https://wa.me/5571993758236?text=Olá! Vim pelo site e gostaria de agendar uma avaliação." class="bg-green-500 hover:bg-green-600 text-white shadow-[0_0_20px_rgba(34,197,94,0.4)] px-8 py-5 rounded-full text-center uppercase tracking-widest font-black flex items-center justify-center gap-2 transform transition-all hover:scale-105 animate-pulse" style="animation-duration: 2.5s;">
+                        <i class="ph-fill ph-whatsapp-logo text-2xl"></i> Agende sua avaliação hoje
+                    </a>
+                    <a href="#tratamentos" class="px-8 py-4 rounded-full text-center uppercase tracking-widest font-bold border-2 border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white transition-colors">
+                        Ver Tratamentos
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Imagem Hero -->
+            <div class="relative gsap-reveal h-[600px] hidden md:block">
+                <div class="absolute inset-0 rounded-[40px] overflow-hidden shadow-2xl">
+                    <img src="./hero.jpg" alt="Atendimento Popclin" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-blue/60 to-transparent"></div>
+                </div>
+                <!-- Badge Flutuante -->
+                <div class="absolute bottom-10 -left-10 bg-white p-5 rounded-2xl shadow-xl flex items-center gap-4 animate-bounce" style="animation-duration: 3s;">
+                    <div class="w-12 h-12 rounded-full bg-brand-blue/10 flex items-center justify-center text-brand-blue text-2xl">
+                        <i class="ph-fill ph-map-pin"></i>
+                    </div>
+                    <div>
+                        <p class="font-bold text-brand-dark text-sm leading-tight">Fácil Acesso<br><span class="text-brand-muted font-normal">Av. Dorival Caymmi</span></p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+
+    <!-- 3. FAIXA DE PROVA IMEDIATA -->
+    <section class="bg-brand-blue py-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 divide-x-0 md:divide-x divide-white/10">
+                <div class="text-center px-4">
+                    <h3 class="font-heading text-3xl font-bold text-brand-gold mb-1">15 Anos</h3>
+                    <p class="text-white/80 text-sm font-medium uppercase tracking-wider">De Experiência</p>
+                </div>
+                <div class="text-center px-4">
+                    <h3 class="font-heading text-3xl font-bold text-brand-gold mb-1">Nota 5.0</h3>
+                    <p class="text-white/80 text-sm font-medium uppercase tracking-wider">Excelência</p>
+                </div>
+                <div class="text-center px-4">
+                    <h3 class="font-heading text-3xl font-bold text-brand-gold mb-1">+400</h3>
+                    <p class="text-white/80 text-sm font-medium uppercase tracking-wider">Avaliações no Google</p>
+                </div>
+                <div class="text-center px-4">
+                    <h3 class="font-heading text-3xl font-bold text-brand-gold mb-1">+3000</h3>
+                    <p class="text-white/80 text-sm font-medium uppercase tracking-wider">Clientes Felizes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. TRATAMENTOS HIERARQUIZADOS -->
+    <section id="tratamentos" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16 gsap-reveal">
+                <span class="text-brand-gold font-bold tracking-widest uppercase text-sm mb-4 block">Especialidades</span>
+                <h2 class="font-heading text-4xl md:text-5xl font-bold text-brand-blue mb-4">A solução exata para o seu sorriso</h2>
+                <p class="text-brand-muted max-w-2xl mx-auto text-lg">Tratamentos avançados para recuperar sua saúde bucal, estética e autoestima em um só lugar.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Implantes -->
+                <div class="bg-white rounded-3xl p-4 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all group">
+                    <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=538,fit=crop/wRA7J22jfbySs9Eh/implante-ahZ58edyqG5SaPvg.png" alt="Implantes Dentários" class="w-full h-48 object-cover rounded-2xl mb-6">
+                    <div class="px-2 pb-2">
+                        <h3 class="font-heading text-2xl font-bold text-brand-dark mb-3">Implantes Dentários</h3>
+                        <p class="text-brand-muted text-sm mb-6">Perdeu dentes? Recupere a função mastigatória e a estética com implantes seguros e planejamento preciso.</p>
+                        <a href="https://wa.me/5571993758236?text=Quero saber mais sobre Implantes" class="text-sm font-bold text-brand-blue uppercase tracking-wider flex items-center gap-2 group-hover:text-brand-gold transition-colors">
+                            Avaliar Implante <i class="ph-bold ph-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Facetas -->
+                <div class="bg-white rounded-3xl p-4 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all group">
+                    <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=538,fit=crop/wRA7J22jfbySs9Eh/lente-w12gxioqd9SYHn0g.jpg" alt="Facetas e Lentes" class="w-full h-48 object-cover rounded-2xl mb-6">
+                    <div class="px-2 pb-2">
+                        <h3 class="font-heading text-2xl font-bold text-brand-dark mb-3">Facetas em Resina/Porcelana</h3>
+                        <p class="text-brand-muted text-sm mb-6">Quer melhorar a estética? Transforme formato, cor e alinhamento dos dentes com alta naturalidade.</p>
+                        <a href="https://wa.me/5571993758236?text=Quero saber mais sobre Facetas" class="text-sm font-bold text-brand-blue uppercase tracking-wider flex items-center gap-2 group-hover:text-brand-gold transition-colors">
+                            Transformar Sorriso <i class="ph-bold ph-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Clareamento -->
+                <div class="bg-white rounded-3xl p-4 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all group">
+                    <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=538,fit=crop/wRA7J22jfbySs9Eh/clareamento-de-consultorio-9AW2mRVF9KqSKRzl.jpg" alt="Clareamento Dental" class="w-full h-48 object-cover rounded-2xl mb-6">
+                    <div class="px-2 pb-2">
+                        <h3 class="font-heading text-2xl font-bold text-brand-dark mb-3">Clareamento Dental</h3>
+                        <p class="text-brand-muted text-sm mb-6">Dentes mais brancos, sorriso renovado e resultados seguros com acompanhamento profissional.</p>
+                        <a href="https://wa.me/5571993758236?text=Quero saber mais sobre Clareamento" class="text-sm font-bold text-brand-blue uppercase tracking-wider flex items-center gap-2 group-hover:text-brand-gold transition-colors">
+                            Clarear Sorriso <i class="ph-bold ph-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Ortodontia -->
+                <div class="bg-white rounded-3xl p-4 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all group">
+                    <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=538,fit=crop/wRA7J22jfbySs9Eh/aparelho-sbRafCJd3u0dKWJH.jpg" alt="Ortodontia" class="w-full h-48 object-cover rounded-2xl mb-6">
+                    <div class="px-2 pb-2">
+                        <h3 class="font-heading text-2xl font-bold text-brand-dark mb-3">Ortodontia</h3>
+                        <p class="text-brand-muted text-sm mb-6">Correção de dentes com aparelhos modernos para sorrisos alinhados e mordida perfeita.</p>
+                        <a href="https://wa.me/5571993758236?text=Quero saber mais sobre Aparelhos" class="text-sm font-bold text-brand-blue uppercase tracking-wider flex items-center gap-2 group-hover:text-brand-gold transition-colors">
+                            Avaliar Aparelho <i class="ph-bold ph-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Prótese Protocolo -->
+                <div class="bg-white rounded-3xl p-4 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all group">
+                    <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=538,fit=crop/wRA7J22jfbySs9Eh/protocolo-ORJw2esf7v0N5BVx.jpg" alt="Prótese Protocolo" class="w-full h-48 object-cover rounded-2xl mb-6">
+                    <div class="px-2 pb-2">
+                        <h3 class="font-heading text-2xl font-bold text-brand-dark mb-3">Prótese Protocolo</h3>
+                        <p class="text-brand-muted text-sm mb-6">Volte a mastigar com conforto e segurança. Próteses fixas sobre implantes que não machucam e não soltam.</p>
+                        <a href="https://wa.me/5571993758236?text=Quero saber mais sobre Prótese" class="text-sm font-bold text-brand-blue uppercase tracking-wider flex items-center gap-2 group-hover:text-brand-gold transition-colors">
+                            Recuperar Dentes <i class="ph-bold ph-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Clínica Geral -->
+                <div class="bg-white rounded-3xl p-4 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all group">
+                    <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=538,fit=crop/wRA7J22jfbySs9Eh/odontologia-clinica-s6W99Q9kbr0mpQhw.jpg" alt="Clínica Geral" class="w-full h-48 object-cover rounded-2xl mb-6">
+                    <div class="px-2 pb-2">
+                        <h3 class="font-heading text-2xl font-bold text-brand-dark mb-2">Clínica Geral & Prevenção</h3>
+                        <p class="text-brand-muted text-sm mb-4">Está com dor ou precisa de um check-up? Limpeza, restaurações e tratamento de canal sem dor.</p>
+                        <a href="https://wa.me/5571993758236?text=Gostaria de marcar uma avaliação geral" class="text-sm font-bold text-brand-blue uppercase tracking-wider flex items-center gap-2 hover:text-brand-gold transition-colors">
+                            Agendar Avaliação <i class="ph-bold ph-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. DIFERENCIAIS -->
+    <section id="diferenciais" class="py-20 bg-brand-light">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="relative gsap-reveal">
+                    <!-- Grid da Esquerda: 2 Fotos em cima, 1 Vídeo embaixo -->
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <img src="./clinica_1.jpg" alt="Equipamentos" class="w-full h-48 object-cover rounded-3xl shadow-lg">
+                        <img src="./clinica_2.png" alt="Consultório" class="w-full h-48 object-cover rounded-3xl shadow-lg">
+                    </div>
+                    <div class="w-full h-72 bg-gray-900 rounded-3xl overflow-hidden shadow-2xl relative group cursor-pointer">
+                        <!-- Capa do Vídeo -->
+                        <img src="./clinica_2.png" alt="Vídeo Popclin" class="w-full h-full object-cover opacity-60 group-hover:scale-110 transition-transform duration-700">
+                        
+                        <!-- Link Overlay -->
+                        <a href="https://www.youtube.com/watch?v=L-7BorRNsL0" target="_blank" class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-20 h-20 bg-brand-gold rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(212,175,55,0.5)] group-hover:scale-110 transition-transform">
+                                <i class="ph-fill ph-play text-white text-4xl ml-1"></i>
+                            </div>
+                        </a>
+                        
+                        <!-- Texto Informativo -->
+                        <div class="absolute bottom-6 left-6 right-6 text-center">
+                            <p class="text-white font-bold text-sm uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">Assistir vídeo completo no YouTube</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Decorative Elements -->
+                    <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-brand-gold rounded-full opacity-20 blur-2xl"></div>
+                    <div class="absolute -top-6 -right-6 w-32 h-32 bg-brand-blue rounded-full opacity-10 blur-3xl"></div>
+                </div>
+
+                <div class="gsap-reveal">
+                    <h2 class="font-heading text-4xl font-bold text-brand-blue mb-8">Por que escolher a Popclin?</h2>
+                    
+                    <ul class="space-y-6">
+                        <li class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-brand-gold text-xl flex-shrink-0">
+                                <i class="ph-fill ph-scan"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-brand-dark text-lg mb-1">Escâner Intraoral</h4>
+                                <p class="text-sm text-brand-muted">Diga adeus às massinhas desconfortáveis. Moldamos seu sorriso de forma 100% digital, rápida e sem enjoo.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-brand-gold text-xl flex-shrink-0">
+                                <i class="ph-fill ph-users"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-brand-dark text-lg mb-1">Laboratório Próprio/Parceiro</h4>
+                                <p class="text-sm text-brand-muted">Seu tratamento é finalizado muito mais rápido, com precisão milimétrica e controle total de qualidade das próteses e facetas.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-brand-gold text-xl flex-shrink-0">
+                                <i class="ph-fill ph-heart"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-brand-dark text-lg mb-1">Fim da Ansiedade e do Medo</h4>
+                                <p class="text-sm text-brand-muted">Nosso atendimento é de fato humanizado. Respeitamos seu tempo e garantimos um ambiente acolhedor, calmo e sem dor.</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-brand-gold text-xl flex-shrink-0">
+                                <i class="ph-fill ph-map-pin"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-brand-dark text-lg mb-1">Clínica no Centro de Itapuã</h4>
+                                <p class="text-sm text-brand-muted">Fácil de chegar de qualquer lugar de Salvador. Localizada na Av. Dorival Caymmi, com estrutura premium.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. EQUIPE (NOVO) -->
+    <section id="equipe" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 gsap-reveal">
+                <h2 class="font-heading text-4xl md:text-5xl font-bold text-brand-blue mb-4">Conheça nossos especialistas</h2>
+                <p class="text-brand-muted text-lg font-medium">Uma equipe dedicada a cuidar do seu sorriso com excelência e humanização.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 gsap-reveal">
+                <!-- Dr. Vagner Ribeiro -->
+                <div class="bg-brand-light rounded-3xl p-6 text-center shadow-sm border border-gray-100 hover:-translate-y-2 transition-transform">
+                    <div class="w-32 h-32 mx-auto rounded-full overflow-hidden mb-4 border-4 border-white shadow-md">
+                        <img src="./Nova pasta/wagner.png" alt="Dr. Vagner Ribeiro" class="w-full h-full object-cover object-top">
+                    </div>
+                    <h3 class="font-bold text-brand-dark text-lg">Dr. Vagner Ribeiro</h3>
+                    <p class="text-brand-gold text-sm font-bold mb-3 uppercase tracking-wide">Ortodontia</p>
+                    <p class="text-brand-muted text-sm">Diretor clínico e especialista em ortodontia, focado na gestão e na melhor experiência para cada paciente.</p>
+                </div>
+
+                <!-- Monique Rocha -->
+                <div class="bg-brand-light rounded-3xl p-6 text-center shadow-sm border border-gray-100 hover:-translate-y-2 transition-transform">
+                    <div class="w-32 h-32 mx-auto rounded-full overflow-hidden mb-4 border-4 border-white shadow-md">
+                        <img src="./Nova pasta/monique.jpg" alt="Monique Rocha" class="w-full h-full object-cover object-top">
+                    </div>
+                    <h3 class="font-bold text-brand-dark text-lg">Monique Rocha</h3>
+                    <p class="text-brand-gold text-sm font-bold mb-3 uppercase tracking-wide">Técnica em Saúde Bucal</p>
+                    <p class="text-brand-muted text-sm">Cuidado e acolhimento em cada etapa do seu tratamento, garantindo segurança e bem-estar.</p>
+                </div>
+
+                <!-- Dr. Julio Tourinho -->
+                <div class="bg-brand-light rounded-3xl p-6 text-center shadow-sm border border-gray-100 hover:-translate-y-2 transition-transform">
+                    <div class="w-32 h-32 mx-auto rounded-full overflow-hidden mb-4 border-4 border-white shadow-md">
+                        <img src="./Nova pasta/julio.png" alt="Dr. Julio Tourinho" class="w-full h-full object-cover object-top">
+                    </div>
+                    <h3 class="font-bold text-brand-dark text-lg">Dr. Julio Tourinho</h3>
+                    <p class="text-brand-gold text-sm font-bold mb-3 uppercase tracking-wide">Prótese e Reabilitação</p>
+                    <p class="text-brand-muted text-sm">Especialista em devolver a segurança e a função mastigatória através de próteses e reabilitação oral.</p>
+                </div>
+                
+                <!-- Dra. Iasmin Vieira -->
+                <div class="bg-brand-light rounded-3xl p-6 text-center shadow-sm border border-gray-100 hover:-translate-y-2 transition-transform">
+                    <div class="w-32 h-32 mx-auto rounded-full overflow-hidden mb-4 border-4 border-white shadow-md">
+                        <img src="./Nova pasta/iasmin.png" alt="Dra. Iasmin Vieira" class="w-full h-full object-cover object-top">
+                    </div>
+                    <h3 class="font-bold text-brand-dark text-lg">Dra. Iasmin Vieira</h3>
+                    <p class="text-brand-gold text-sm font-bold mb-3 uppercase tracking-wide">Implante e Prótese</p>
+                    <p class="text-brand-muted text-sm">Cirurgiã-dentista especialista em implantes, atuando com precisão para recuperar seu sorriso completo.</p>
+                </div>
+
+                <!-- Dr. Raimundo Sampaio -->
+                <div class="bg-brand-light rounded-3xl p-6 text-center shadow-sm border border-gray-100 hover:-translate-y-2 transition-transform">
+                    <div class="w-32 h-32 mx-auto rounded-full overflow-hidden mb-4 border-4 border-white shadow-md">
+                        <img src="./Nova pasta/raimundo.png" alt="Dr. Raimundo Sampaio" class="w-full h-full object-cover object-top">
+                    </div>
+                    <h3 class="font-bold text-brand-dark text-lg">Dr. Raimundo Sampaio</h3>
+                    <p class="text-brand-gold text-sm font-bold mb-3 uppercase tracking-wide">Ortodontia</p>
+                    <p class="text-brand-muted text-sm">Responsável por construir sorrisos alinhados e funcionais, cuidando da saúde e estética da sua mordida.</p>
+                </div>
+
+                <!-- Dra. Danielle Barreto -->
+                <div class="bg-brand-light rounded-3xl p-6 text-center shadow-sm border border-gray-100 hover:-translate-y-2 transition-transform">
+                    <div class="w-32 h-32 mx-auto rounded-full overflow-hidden mb-4 border-4 border-white shadow-md">
+                        <img src="./Nova pasta/danielle.png" alt="Dra. Danielle Barreto" class="w-full h-full object-cover object-top">
+                    </div>
+                    <h3 class="font-bold text-brand-dark text-lg">Dra. Danielle Barreto</h3>
+                    <p class="text-brand-gold text-sm font-bold mb-3 uppercase tracking-wide">Odontologia Estética</p>
+                    <p class="text-brand-muted text-sm">Transformando sorrisos e elevando autoestima com facetas em resina, lentes em porcelana e clareamentos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. PROVA SOCIAL (CARROSSEL FUNCIONAL - ESTILO OBE) -->
+    <section id="depoimentos" class="py-24 bg-[#F2EDE4] relative overflow-hidden">
+        <!-- Swiper CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+        
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <!-- Google Badge Header -->
+            <div class="flex justify-center mb-8 gsap-reveal">
+                <div class="bg-white px-6 py-2 rounded-full shadow-sm flex items-center gap-3 border border-gray-100">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" class="w-5 h-5">
+                    <div class="flex items-center text-[#FBBC05] text-sm">
+                        <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                    </div>
+                    <span class="font-bold text-brand-dark text-sm">5.0</span>
+                </div>
+            </div>
+
+            <!-- Title Section -->
+            <div class="text-center mb-16 gsap-reveal">
+                <h2 class="font-heading text-4xl md:text-5xl font-bold text-brand-dark mb-4">O que dizem sobre nós</h2>
+                <p class="text-brand-muted text-lg">Avaliações reais de pacientes que confiaram seus sorrisos e suas famílias à Popclin.</p>
+            </div>
+
+            <!-- Swiper Container -->
+            <div class="swiper testimonials-swiper pb-12 gsap-reveal">
+                <div class="swiper-wrapper">
+                    <!-- Depoimento 1 (Sthefane) -->
+                    <div class="swiper-slide h-auto">
+                        <div class="bg-white p-10 rounded-[45px] shadow-sm flex flex-col h-full relative mx-2">
+                            <div class="flex items-center gap-1 mb-6 text-[#FBBC05] text-xs">
+                                <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                            </div>
+                            <i class="ph ph-quotes text-3xl text-gray-100 absolute top-10 right-10"></i>
+                            <p class="text-brand-dark/80 italic mb-10 text-[15px] leading-relaxed flex-grow">
+                                "Indico de olhos fechados! As meninas da recepção são um amor, super educadas. Levei minha filha de 5 anos para fazer a avaliação e ela foi atendida pelas Drs. Ilana e Stephanie que também foram sensacionais."
+                            </p>
+                            <div class="flex items-center gap-4">
+                                <div class="w-14 h-14 rounded-full bg-[#F2EDE4] text-brand-dark flex items-center justify-center font-bold text-xl uppercase">S</div>
+                                <div>
+                                    <div class="font-bold text-brand-dark text-lg">Sthefane Rosa</div>
+                                    <div class="text-xs text-brand-muted">Paciente • Odontopediatria</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Depoimento 2 (Ana Paula) -->
+                    <div class="swiper-slide h-auto">
+                        <div class="bg-white p-10 rounded-[45px] shadow-sm flex flex-col h-full relative mx-2">
+                            <div class="flex items-center gap-1 mb-6 text-[#FBBC05] text-xs">
+                                <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                            </div>
+                            <i class="ph ph-quotes text-3xl text-gray-100 absolute top-10 right-10"></i>
+                            <p class="text-brand-dark/80 italic mb-10 text-[15px] leading-relaxed flex-grow">
+                                "No meu ponto de vista, estão de parabéns toda a equipe, porém estou sendo muito bem atendida, tanto no meu procedimento como na parte financeira... e eu só tenho a agradecer todo o carinho de toda a equipe."
+                            </p>
+                            <div class="flex items-center gap-4">
+                                <div class="w-14 h-14 rounded-full bg-[#E5E9E2] text-brand-dark flex items-center justify-center font-bold text-xl uppercase">A</div>
+                                <div>
+                                    <div class="font-bold text-brand-dark text-lg">Ana Paula Melo</div>
+                                    <div class="text-xs text-brand-muted">Paciente • Ortodontia</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Depoimento 3 (Edna) -->
+                    <div class="swiper-slide h-auto">
+                        <div class="bg-white p-10 rounded-[45px] shadow-sm flex flex-col h-full relative mx-2">
+                            <div class="flex items-center gap-1 mb-6 text-[#FBBC05] text-xs">
+                                <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                            </div>
+                            <i class="ph ph-quotes text-3xl text-gray-100 absolute top-10 right-10"></i>
+                            <p class="text-brand-dark/80 italic mb-10 text-[15px] leading-relaxed flex-grow">
+                                "Tive um ótimo atendimento, da recepção aos consultórios, o acolhimento foi de excelência. Com profissionais responsáveis e dedicados. Ambiente limpo e sofisticado."
+                            </p>
+                            <div class="flex items-center gap-4">
+                                <div class="w-14 h-14 rounded-full bg-[#E8E4F2] text-brand-dark flex items-center justify-center font-bold text-xl uppercase">E</div>
+                                <div>
+                                    <div class="font-bold text-brand-dark text-lg">Edna Carvalho</div>
+                                    <div class="text-xs text-brand-muted">Paciente • Implantes</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Depoimento 4 (Screenshot_3) -->
+                    <div class="swiper-slide h-auto">
+                        <div class="bg-white p-10 rounded-[45px] shadow-sm flex flex-col h-full relative mx-2">
+                            <div class="flex items-center gap-1 mb-6 text-[#FBBC05] text-xs">
+                                <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                            </div>
+                            <i class="ph ph-quotes text-3xl text-gray-100 absolute top-10 right-10"></i>
+                            <p class="text-brand-dark/80 italic mb-10 text-[15px] leading-relaxed flex-grow">
+                                "Atendimento de excelência. As dentistas são muito simpáticas, atenciosas e competentes. Minha filha de 5 anos até então tinha medo de ir para dentista, agora me pergunta quando irá retornar!"
+                            </p>
+                            <div class="flex items-center gap-4">
+                                <div class="w-14 h-14 rounded-full bg-[#F2EDE4] text-brand-dark flex items-center justify-center font-bold text-xl uppercase">M</div>
+                                <div>
+                                    <div class="font-bold text-brand-dark text-lg">Márcia Santos</div>
+                                    <div class="text-xs text-brand-muted">Paciente • Odontopediatria</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Depoimento 5 (Screenshot_4) -->
+                    <div class="swiper-slide h-auto">
+                        <div class="bg-white p-10 rounded-[45px] shadow-sm flex flex-col h-full relative mx-2">
+                            <div class="flex items-center gap-1 mb-6 text-[#FBBC05] text-xs">
+                                <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                            </div>
+                            <i class="ph ph-quotes text-3xl text-gray-100 absolute top-10 right-10"></i>
+                            <p class="text-brand-dark/80 italic mb-10 text-[15px] leading-relaxed flex-grow">
+                                "Excelente atendimento, Dr. Vagner muito atencioso, explica tudo com detalhes e passa muita segurança. A clínica é linda e super moderna. Nota 1000!"
+                            </p>
+                            <div class="flex items-center gap-4">
+                                <div class="w-14 h-14 rounded-full bg-[#E5E9E2] text-brand-dark flex items-center justify-center font-bold text-xl uppercase">R</div>
+                                <div>
+                                    <div class="font-bold text-brand-dark text-lg">Ricardo Lins</div>
+                                    <div class="text-xs text-brand-muted">Paciente • Lentes de Resina</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Depoimento 6 (Screenshot_5) -->
+                    <div class="swiper-slide h-auto">
+                        <div class="bg-white p-10 rounded-[45px] shadow-sm flex flex-col h-full relative mx-2">
+                            <div class="flex items-center gap-1 mb-6 text-[#FBBC05] text-xs">
+                                <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                            </div>
+                            <i class="ph ph-quotes text-3xl text-gray-100 absolute top-10 right-10"></i>
+                            <p class="text-brand-dark/80 italic mb-10 text-[15px] leading-relaxed flex-grow">
+                                "Ambiente maravilhoso, recepção nota 10. Fiz meu clareamento e o resultado foi surpreendente. Equipe de profissionais muito qualificados e atenciosos."
+                            </p>
+                            <div class="flex items-center gap-4">
+                                <div class="w-14 h-14 rounded-full bg-[#E8E4F2] text-brand-dark flex items-center justify-center font-bold text-xl uppercase">C</div>
+                                <div>
+                                    <div class="font-bold text-brand-dark text-lg">Camila Dantas</div>
+                                    <div class="text-xs text-brand-muted">Paciente • Estética</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Swiper Pagination (Optional) -->
+                <div class="swiper-pagination"></div>
+            </div>
+
+            <!-- Slider Controls -->
+            <div class="flex justify-center items-center gap-4 mt-8 gsap-reveal">
+                <button class="swiper-button-prev-custom w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm hover:shadow-md transition-all">
+                    <i class="ph ph-arrow-left text-brand-dark"></i>
+                </button>
+                <div class="swiper-counter text-brand-muted text-sm font-medium">1 / 6</div>
+                <button class="swiper-button-next-custom w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm hover:shadow-md transition-all">
+                    <i class="ph ph-arrow-right text-brand-dark"></i>
+                </button>
+            </div>
+
+            <!-- Footer Button -->
+            <div class="mt-16 text-center gsap-reveal">
+                <a href="https://www.google.com/maps/place/POPCLIN+ITAPU%C3%83/@-12.944392,-38.36547,15z/data=!4m8!3m7!1s0x7161775d72b3799:0x1307edd5acd5d82f!8m2!3d-12.9443924!4d-38.3654704!9m1!1b1!16s%2Fg%2F11c20bxl3q?hl=pt-BR&entry=ttu&g_ep=EgoyMDI2MDQyMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="inline-flex items-center gap-3 bg-[#E8E8E8]/50 hover:bg-[#E8E8E8] text-brand-dark px-10 py-4 rounded-full font-bold uppercase tracking-widest text-xs transition-all">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" class="w-4 h-4">
+                    Ver todas as avaliações no Google
+                </a>
+            </div>
+        </div>
+
+        <!-- Swiper JS & Init -->
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const swiper = new Swiper('.testimonials-swiper', {
+                    slidesPerView: 1,
+                    spaceBetween: 30,
+                    loop: true,
+                    navigation: {
+                        nextEl: '.swiper-button-next-custom',
+                        prevEl: '.swiper-button-prev-custom',
+                    },
+                    breakpoints: {
+                        768: { slidesPerView: 2 },
+                        1024: { slidesPerView: 3 }
+                    },
+                    on: {
+                        slideChange: function () {
+                            const counter = document.querySelector('.swiper-counter');
+                            if(counter) counter.innerText = `${this.realIndex + 1} / 6`;
+                        }
+                    }
+                });
+            });
+        </script>
+    </section>
+
+    <!-- 8. ANTES E DEPOIS -->
+    <section id="resultados" class="py-24 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16 gsap-reveal">
+                <span class="text-brand-gold font-bold tracking-widest uppercase text-sm mb-4 block">Transformações Reais</span>
+                <h2 class="font-heading text-4xl md:text-5xl font-bold text-brand-blue mb-4">O Poder de um Novo Sorriso</h2>
+                <p class="text-brand-muted text-lg max-w-2xl mx-auto">Veja resultados de pacientes que recuperaram a autoestima com a Popclin.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 gsap-reveal">
+                <!-- Caso 1 -->
+                <div class="bg-brand-light rounded-[40px] p-2 shadow-sm hover:shadow-xl transition-all duration-500 group">
+                    <div class="rounded-[35px] overflow-hidden relative aspect-square">
+                        <img src="./antes e depois/faceta.jpg" alt="Transformação Dental" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700">
+                        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur px-6 py-2 rounded-full text-brand-dark font-bold text-xs uppercase tracking-widest shadow-lg">Lentes em Resina</div>
+                    </div>
+                </div>
+                <!-- Caso 2 -->
+                <div class="bg-brand-light rounded-[40px] p-2 shadow-sm hover:shadow-xl transition-all duration-500 group">
+                    <div class="rounded-[35px] overflow-hidden relative aspect-square">
+                        <img src="./antes e depois/lipo papada.jpg" alt="Harmonização Facial" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700">
+                        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur px-6 py-2 rounded-full text-brand-dark font-bold text-xs uppercase tracking-widest shadow-lg">Lipo de Papada</div>
+                    </div>
+                </div>
+                <!-- Caso 3 -->
+                <div class="bg-brand-light rounded-[40px] p-2 shadow-sm hover:shadow-xl transition-all duration-500 group">
+                    <div class="rounded-[35px] overflow-hidden relative aspect-square">
+                        <img src="./antes e depois/implante.webp" alt="Reabilitação Oral" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700">
+                        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur px-6 py-2 rounded-full text-brand-dark font-bold text-xs uppercase tracking-widest shadow-lg">Implantes Dentários</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center gsap-reveal">
+                <a href="https://www.instagram.com/popclinitapua/" target="_blank" class="inline-flex items-center gap-3 bg-brand-dark hover:bg-brand-blue text-white px-10 py-5 rounded-full font-bold uppercase tracking-widest text-sm shadow-xl transition-all hover:scale-105">
+                    <i class="ph-fill ph-instagram-logo text-2xl"></i>
+                    Ver mais resultados no Instagram
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8.1 DEPOIMENTOS EM VÍDEO (CARROSSEL) -->
+    <section class="py-24 bg-[#F9F6F2] overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16 gsap-reveal">
+                <span class="text-brand-gold font-bold tracking-widest uppercase text-sm mb-4 block">Histórias de Sucesso</span>
+                <h2 class="font-heading text-4xl md:text-5xl font-bold text-brand-dark mb-4">Relatos em Vídeo</h2>
+                <p class="text-brand-muted text-lg">Assista à experiência de quem viveu a transformação na pele.</p>
+            </div>
+
+            <!-- Swiper Container for Videos -->
+            <div class="swiper video-swiper pb-12 gsap-reveal">
+                <div class="swiper-wrapper">
+                    <!-- Vídeo 1 -->
+                    <div class="swiper-slide h-auto">
+                        <a href="https://www.youtube.com/watch?v=EyrWjgqN20o" target="_blank" class="block relative group rounded-[40px] overflow-hidden aspect-video shadow-lg mx-2">
+                            <img src="https://img.youtube.com/vi/EyrWjgqN20o/maxresdefault.jpg" alt="Vídeo Depoimento" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700">
+                            <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all flex items-center justify-center">
+                                <div class="w-16 h-16 bg-brand-gold rounded-full flex items-center justify-center shadow-2xl group-hover:scale-125 transition-all">
+                                    <i class="ph-fill ph-play text-white text-2xl"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Vídeo 2 -->
+                    <div class="swiper-slide h-auto">
+                        <a href="https://www.youtube.com/watch?v=qHQxeaOm29E" target="_blank" class="block relative group rounded-[40px] overflow-hidden aspect-video shadow-lg mx-2">
+                            <img src="https://img.youtube.com/vi/qHQxeaOm29E/maxresdefault.jpg" alt="Vídeo Depoimento" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700">
+                            <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all flex items-center justify-center">
+                                <div class="w-16 h-16 bg-brand-gold rounded-full flex items-center justify-center shadow-2xl group-hover:scale-125 transition-all">
+                                    <i class="ph-fill ph-play text-white text-2xl"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Vídeo 3 -->
+                    <div class="swiper-slide h-auto">
+                        <a href="https://www.youtube.com/watch?v=teSWBdZ4Lpg" target="_blank" class="block relative group rounded-[40px] overflow-hidden aspect-video shadow-lg mx-2">
+                            <img src="https://img.youtube.com/vi/teSWBdZ4Lpg/maxresdefault.jpg" alt="Vídeo Depoimento" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700">
+                            <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all flex items-center justify-center">
+                                <div class="w-16 h-16 bg-brand-gold rounded-full flex items-center justify-center shadow-2xl group-hover:scale-125 transition-all">
+                                    <i class="ph-fill ph-play text-white text-2xl"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Vídeo 4 -->
+                    <div class="swiper-slide h-auto">
+                        <a href="https://www.youtube.com/watch?v=G4STj9geFBo" target="_blank" class="block relative group rounded-[40px] overflow-hidden aspect-video shadow-lg mx-2">
+                            <img src="https://img.youtube.com/vi/G4STj9geFBo/maxresdefault.jpg" alt="Vídeo Depoimento" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700">
+                            <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all flex items-center justify-center">
+                                <div class="w-16 h-16 bg-brand-gold rounded-full flex items-center justify-center shadow-2xl group-hover:scale-125 transition-all">
+                                    <i class="ph-fill ph-play text-white text-2xl"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <!-- Controls -->
+                <div class="flex justify-center items-center gap-4 mt-12">
+                    <button class="video-swiper-prev w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm hover:shadow-md transition-all">
+                        <i class="ph ph-arrow-left text-brand-dark"></i>
+                    </button>
+                    <div class="video-swiper-pagination swiper-pagination !static !w-auto"></div>
+                    <button class="video-swiper-next w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm hover:shadow-md transition-all">
+                        <i class="ph ph-arrow-right text-brand-dark"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                new Swiper('.video-swiper', {
+                    slidesPerView: 1,
+                    spaceBetween: 30,
+                    loop: true,
+                    navigation: {
+                        nextEl: '.video-swiper-next',
+                        prevEl: '.video-swiper-prev',
+                    },
+                    pagination: {
+                        el: '.video-swiper-pagination',
+                        clickable: true
+                    },
+                    breakpoints: {
+                        768: { slidesPerView: 2 },
+                        1024: { slidesPerView: 2 }
+                    }
+                });
+            });
+        </script>
+    </section>
+
+    <!-- 9. SEU ESPAÇO DE TRANSFORMAÇÃO (ESTILO FOTO) -->
+    <section class="py-24 bg-[#F9F6F2] relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16 gsap-reveal">
+                <span class="text-brand-muted italic font-medium text-lg block mb-2">A Clínica</span>
+                <h2 class="font-heading text-4xl md:text-5xl font-bold text-brand-dark mb-6">Seu Espaço de Transformação</h2>
+                <div class="w-20 h-0.5 bg-brand-gold mx-auto mb-8"></div>
+                <p class="text-brand-muted text-lg">Ambiente planejado para seu conforto, segurança e bem-estar.</p>
+            </div>
+
+            <!-- Grid Compacto para preservar qualidade -->
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 gsap-reveal">
+                <!-- Foto 1 -->
+                <div class="aspect-square overflow-hidden rounded-[30px] shadow-sm border border-white/20 group">
+                    <img src="./galeria/imgi_4_photo-1684607633217-462056580c3c.jpg" alt="Espaço" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700">
+                </div>
+                <!-- Foto 2 -->
+                <div class="aspect-square overflow-hidden rounded-[30px] shadow-sm border border-white/20 group">
+                    <img src="./galeria/imgi_4_sala-rx-melhorada-zX0BZsR3gkPc4nrZ.png" alt="Espaço" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700">
+                </div>
+                <!-- Foto 3 -->
+                <div class="aspect-square overflow-hidden rounded-[30px] shadow-sm border border-white/20 group">
+                    <img src="./galeria/imgi_5_lab-VMI9V8EcipCLtzHs.jpg" alt="Espaço" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700">
+                </div>
+                <!-- Foto 4 -->
+                <div class="aspect-square overflow-hidden rounded-[30px] shadow-sm border border-white/20 group">
+                    <img src="./galeria/imgi_34_photo-1663182115688-490b3948ed31.jpg" alt="Espaço" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700">
+                </div>
+                <!-- Foto 5 -->
+                <div class="aspect-square overflow-hidden rounded-[30px] shadow-sm border border-white/20 group">
+                    <img src="./galeria/imgi_34_photo-1674775372047-27fb6492c9a2.jpg" alt="Espaço" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700">
+                </div>
+                <!-- Foto 6 -->
+                <div class="aspect-square overflow-hidden rounded-[30px] shadow-sm border border-white/20 group">
+                    <img src="./galeria/imgi_9_photo-1629909613638-0e4a1fad8f81.jpg" alt="Espaço" class="w-full h-full object-cover group-hover:scale-110 transition-all duration-700">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="clinica" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Imagem (Primeiro no Mobile via order-first) -->
+                <div class="relative gsap-reveal order-first lg:order-last">
+                    <div class="bg-white p-3 rounded-[40px] shadow-2xl border border-gray-100">
+                        <img src="./sobre.jpg" alt="Sobre a Popclin Itapuã" class="w-full h-auto object-cover rounded-[30px] shadow-sm">
+                    </div>
+                    
+                    <!-- Badge Flutuante 15 Anos -->
+                    <div class="absolute -bottom-6 -right-6 bg-brand-gold text-brand-blue p-6 rounded-3xl shadow-xl z-20 hidden md:block">
+                        <div class="text-4xl font-black leading-none">15</div>
+                        <div class="text-xs font-bold uppercase tracking-tighter">Anos de Histórias</div>
+                    </div>
+                </div>
+
+                <div class="gsap-reveal lg:order-first">
+                    <h2 class="font-heading text-4xl md:text-5xl font-bold text-brand-blue mb-8">Sobre a Popclin Itapuã</h2>
+                    
+                    <div class="space-y-6 text-brand-dark/80 leading-relaxed mb-10">
+                        <p>
+                            A POPCLIN é uma <strong>clínica odontológica em Salvador</strong>, fundada em 2012 pelo <strong>Dr. Vagner dos Santos Ribeiro</strong>, com sede no bairro de <strong>Itapuã</strong>. Atuamos com excelência na área da <strong>odontologia</strong>, oferecendo tratamentos modernos, seguros e personalizados para pacientes de toda Salvador e região.
+                        </p>
+                        <p>
+                            Nossa clínica conta com uma <strong>equipe multidisciplinar de dentistas especialistas</strong>, preparada para atender diversas especialidades odontológicas em um único local. Trabalhamos com tecnologia atualizada, protocolos modernos e um <strong>atendimento humanizado</strong>, garantindo conforto, confiança e resultados de alta qualidade.
+                        </p>
+                        <p>
+                            Na POPCLIN, cada paciente é atendido de forma individualizada, com foco na <strong>saúde bucal, estética do sorriso e bem-estar</strong>. Nosso compromisso é proporcionar uma experiência odontológica completa, desde a prevenção até os tratamentos mais avançados.
+                        </p>
+                        <p>
+                            Se você procura um <strong>dentista em Itapuã</strong> ou uma <strong>clínica odontológica de confiança em Salvador</strong>, a POPCLIN está pronta para cuidar do seu sorriso com ética, profissionalismo e atenção aos detalhes.
+                        </p>
+                    </div>
+                    
+                    <a href="https://wa.me/5571993758236" class="bg-[#0f8b8d] hover:bg-[#0a6667] text-white px-10 py-4 rounded-full font-bold transition-colors inline-block shadow-md">Agende agora</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. LOCALIZAÇÃO E FAQ -->
+    <section id="contato" class="py-24 bg-white border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-16">
+                <!-- Localização -->
+                <div class="gsap-reveal">
+                    <h2 class="font-heading text-3xl font-bold text-brand-blue mb-8">Venha nos visitar</h2>
+                    
+                    <div class="space-y-6 mb-10">
+                        <div class="flex items-start gap-4">
+                            <i class="ph-fill ph-map-pin text-2xl text-brand-gold mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-brand-dark">Endereço</h4>
+                                <p class="text-brand-muted text-sm mt-1">Avenida Dorival Caymmi, 14154<br>Centro Médico Dr. Joaquim Pereira de Souza<br>Salas 107 e 108 - Itapuã, Salvador/BA</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <i class="ph-fill ph-clock text-2xl text-brand-gold mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-brand-dark">Horário de Funcionamento</h4>
+                                <p class="text-brand-muted text-sm mt-1">Segunda a Sexta: 08:00 - 18:00<br>Sábados: 08:00 - 12:00</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <i class="ph-fill ph-whatsapp-logo text-2xl text-brand-gold mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-brand-dark">Contato</h4>
+                                <p class="text-brand-muted text-sm mt-1">(71) 99375-8236</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="rounded-2xl overflow-hidden shadow-lg h-64 relative">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.751351145148!2d-38.3680453!3d-12.9443924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7161775d72b3799%3A0x1307edd5acd5d82f!2sPOPCLIN%20ITAPU%C3%83!5e0!3m2!1spt-BR!2sbr!4v1713800000000!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+
+                <!-- FAQ Curto -->
+                <div class="gsap-reveal bg-brand-light p-10 rounded-[40px]">
+                    <h2 class="font-heading text-3xl font-bold text-brand-blue mb-8">Dúvidas Frequentes</h2>
+                    
+                    <div class="space-y-6">
+                        <div class="border-b border-gray-200 pb-4">
+                            <h4 class="font-bold text-brand-dark mb-2">Como agendar uma avaliação?</h4>
+                            <p class="text-brand-muted text-sm">Basta clicar em qualquer botão do WhatsApp no site. Nossa equipe responderá rapidamente para agendar o melhor horário para você.</p>
+                        </div>
+                        <div class="border-b border-gray-200 pb-4">
+                            <h4 class="font-bold text-brand-dark mb-2">Onde fica a clínica?</h4>
+                            <p class="text-brand-muted text-sm">Estamos localizados em Itapuã, na Av. Dorival Caymmi, dentro do Centro Médico Dr. Joaquim Pereira de Souza.</p>
+                        </div>
+                        <div class="border-b border-gray-200 pb-4">
+                            <h4 class="font-bold text-brand-dark mb-2">Quais tratamentos vocês fazem?</h4>
+                            <p class="text-brand-muted text-sm">Realizamos Implantes, Facetas em resina, Clareamento, Ortodontia, Próteses e Odontologia Clínica Geral.</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 text-center">
+                        <p class="text-sm text-brand-muted mb-4">Ainda tem dúvidas?</p>
+                        <a href="https://wa.me/5571993758236" class="btn-gold w-full block py-4 rounded-full font-bold uppercase tracking-widest text-sm text-center shadow-lg">Falar com a Recepção</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. CTA FINAL MUITO FORTE -->
+    <section class="py-24 bg-brand-blue text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center opacity-10"></div>
+        <div class="max-w-4xl mx-auto px-6 lg:px-8 relative z-10">
+            <h2 class="font-heading text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">Chega de esconder o seu sorriso.</h2>
+            <p class="text-white/90 text-2xl mb-10 max-w-2xl mx-auto font-medium">Fale agora com a nossa equipe no WhatsApp e agende a sua avaliação na Popclin.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="https://wa.me/5571993758236" class="bg-green-500 hover:bg-green-600 text-white shadow-[0_0_30px_rgba(34,197,94,0.5)] px-12 py-6 rounded-full font-black uppercase tracking-widest flex items-center justify-center gap-3 text-xl transform transition-transform hover:scale-105 animate-pulse" style="animation-duration: 2s;">
+                    <i class="ph-fill ph-whatsapp-logo text-3xl"></i> Falar no WhatsApp Agora
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-dark text-white/50 py-8 text-center text-sm">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="font-heading font-bold text-white text-xl">POPCLIN<span class="text-brand-gold">.</span></div>
+            <p>&copy; 2026 Popclin Itapuã. Todos os direitos reservados.</p>
+            <div class="flex gap-4">
+                <a href="https://www.instagram.com/popclin_itapua" class="text-white hover:text-brand-gold transition-colors"><i class="ph-fill ph-instagram-logo text-2xl"></i></a>
+                <a href="https://www.facebook.com/Popclin.itapuan" class="text-white hover:text-brand-gold transition-colors"><i class="ph-fill ph-facebook-logo text-2xl"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botão WhatsApp Flutuante -->
+    <a href="https://wa.me/5571993758236?text=Olá! Vim pelo site e gostaria de agendar uma avaliação." target="_blank" class="float-wpp" aria-label="WhatsApp">
+        <i class="ph-fill ph-whatsapp-logo"></i>
+    </a>
+
+    <script>
+        // Menu Mobile Logic
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuLinks = document.querySelectorAll('.menu-link');
+
+        if(menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.remove('translate-x-full');
+            });
+        }
+
+        if(menuClose) {
+            menuClose.addEventListener('click', () => {
+                mobileMenu.classList.add('translate-x-full');
+            });
+        }
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('translate-x-full');
+            });
+        });
+
+        // Navbar Scrolled Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+                navbar.querySelectorAll('a, button, div').forEach(el => {
+                    if(el.classList.contains('text-brand-blue')) {
+                        // mantém azul
+                    }
+                });
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        document.querySelectorAll('.gsap-reveal').forEach((elem) => {
+            gsap.to(elem, {
+                scrollTrigger: {
+                    trigger: elem,
+                    start: "top 85%",
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power3.out"
+            });
+        });
+
+        // Smooth Scroll with Offset
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    const offset = 96; // Altura da navbar (h-24)
+                    const bodyRect = document.body.getBoundingClientRect().top;
+                    const elementRect = targetElement.getBoundingClientRect().top;
+                    const elementPosition = elementRect - bodyRect;
+                    const offsetPosition = elementPosition - offset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Scroll Spy Logic
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        function scrollSpy() {
+            const scrollY = window.pageYOffset;
+
+            sections.forEach(current => {
+                const sectionHeight = current.offsetHeight;
+                const sectionTop = current.offsetTop - 120; // ajuste de offset para ativar um pouco antes
+                const sectionId = current.getAttribute('id');
+
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + sectionId) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
+
+        // Progress Widget Logic
+        const progressPath = document.querySelector('.progress-wrap path');
+        const pathLength = progressPath.getTotalLength();
+        progressPath.style.transition = progressPath.style.WebkitTransition = 'none';
+        progressPath.style.strokeDasharray = pathLength + ' ' + pathLength;
+        progressPath.style.strokeDashoffset = pathLength;
+        progressPath.getBoundingClientRect();
+        progressPath.style.transition = progressPath.style.WebkitTransition = 'stroke-dashoffset 10ms linear';
+
+        const updateProgress = function () {
+            const scroll = window.scrollY;
+            const height = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = pathLength - (scroll * pathLength / height);
+            progressPath.style.strokeDashoffset = progress;
+            
+            if (scroll > 50) {
+                document.querySelector('.progress-wrap').classList.add('active-progress');
+            } else {
+                document.querySelector('.progress-wrap').classList.remove('active-progress');
+            }
+        }
+
+        window.addEventListener('scroll', updateProgress);
+
+        document.querySelector('.progress-wrap').addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        });
+
+        // Masked Reveal Logic
+        const maskObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.mask-wrap').forEach(mask => maskObserver.observe(mask));
+
+        window.addEventListener('load', scrollSpy);
+        updateProgress();
+
+        // Parallax Blobs Logic
+        window.addEventListener('scroll', () => {
+            const blobs = document.querySelectorAll('.blob');
+            const scrolled = window.pageYOffset;
+            
+            blobs.forEach(blob => {
+                const speed = blob.getAttribute('data-speed');
+                blob.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+    </script>
+    
+    <!-- Film Grain Overlay -->
+    <div class="film-grain"></div>
+
+    <!-- Progress Widget -->
+    <div class="progress-wrap">
+        <svg class="progress-circle" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+        </svg>
+        <i class="ph ph-arrow-up absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-brand-blue text-sm"></i>
+    </div>
+</body>
+</html>
